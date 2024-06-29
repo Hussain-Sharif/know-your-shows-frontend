@@ -1,5 +1,5 @@
 import {Component} from 'react'
-// import {Redirect} from 'react-router-dom'
+import {Redirect} from 'react-router-dom'
 import Cookies from 'js-cookie'
 import {
   LoginBg,
@@ -35,9 +35,9 @@ class Login extends Component {
   }
 
   onSuccess = data => {
-    // const {history} = this.props
+    const {history} = this.props
     Cookies.set('jwt_token', data.jwtToken, {expires: 100})
-    // history.replace('/')
+    history.replace('/')
   }
 
   onFailure = data => {
@@ -50,7 +50,7 @@ class Login extends Component {
 
   getLogoApi=async()=>{
     this.setState({apiStatus:apiStatusConstants.isProgress})
-    const apiUrl="http://localhost:8000/kyslogo/"
+    const apiUrl="http://localhost:4000/kyslogo/"
     const options={
       method:"GET"
     }
@@ -78,7 +78,7 @@ class Login extends Component {
     }
     const userDetails = {username, password}
     console.log({userDetails})
-    const apiUrl = 'http://localhost:8000/login/'
+    const apiUrl = 'http://localhost:4000/login/'
     const options = {
       method: 'POST',
       headers: {
@@ -153,17 +153,20 @@ class Login extends Component {
             isShownPassword,
             myData
           })
-        // if (Cookies.get('jwt_token') !== undefined) {
-        // return <Navigate to="/" />
-        // }
+        if (Cookies.get('jwt_token') !== undefined) {
+        return <Redirect to="/" />
+        }
           
         return (
         <LoginBg >
             <LoginCard
             >
-            <ReuseDiv as="form" bg="transparent"
+            <ReuseDiv display="flex"  as="form" bg="transparent"
             onSubmit={this.onSubmitForm} fD="column" jC="center" aI="center" width="60%" swidth="100%" saI="center">
               {this.renderLogoApi()}
+              <ReuseDiv display="flex"  bg="transparent" fD="row" mb="10px" jC="flex-start" aI="flex-end" saS="flex-start" width="90%">
+                <ReuseText tA="left" color="#fff" as="h1" fS="28px">Login</ReuseText>
+              </ReuseDiv>
               <InputDiv>
                   <LoginLabel
                   htmlFor="username"
@@ -209,21 +212,21 @@ class Login extends Component {
                   Show Password
                   </ShowLabel>
               </LoginShowPassDiv>
-              <ReuseDiv bg="transparent" fD="row" jC="center" mb="10px" mt="5px" width="100%" aI="center">
+              <ReuseDiv display="flex"  bg="transparent" fD="row" jC="center" mb="10px" mt="5px" width="100%" aI="center">
                   <LoginButton type="submit">Login</LoginButton>
               </ReuseDiv>
-              <ReuseDiv bg="transparent">
+              <ReuseDiv display="flex"  bg="transparent">
                 <ErrorMsg>{errorMsg}</ErrorMsg>
             </ReuseDiv>
             </ReuseDiv>
-            <ReuseDiv bg="grey" ml="10px" mr="10px" sml="0px"  mb="25px" height="250px" sheight="3px" width="3px" swidth="70%" bRadius="16px" aS="center">
+            <ReuseDiv display="flex"  bg="grey" ml="10px" mr="10px" sml="0px"  mb="25px" height="250px" sheight="3px" width="3px" swidth="70%" bRadius="16px" aS="center">
             </ReuseDiv>
-            <ReuseDiv bg="transparent" fD="column" jC="flex-start" aI="flex-end" saS="flex-end">
+            <ReuseDiv display="flex"  bg="transparent" fD="column" jC="flex-start" aI="flex-end" saS="flex-end">
               <ReuseText tA="right" color="#fff" as="h1" fS="22px">Not having an Account?</ReuseText>
               <ReuseText tA="right" color="grey" as="h1" fS="12px">click here to <ReuseText onClick={this.navigateSignup} color="#009b37" as="a" fS="12px" tD="underline">SignUp</ReuseText></ReuseText>
             </ReuseDiv>
             </LoginCard>
-            <ReuseDiv bg="transparent" fD="column" jC="center" aI="center" width="50%" swidth="98%" >
+            <ReuseDiv display="flex"  bg="transparent" fD="column" jC="center" aI="center" width="50%" swidth="98%" >
               <LoginImage src={myData.loginBg} alt="Login Image" />
             </ReuseDiv>
         </LoginBg>

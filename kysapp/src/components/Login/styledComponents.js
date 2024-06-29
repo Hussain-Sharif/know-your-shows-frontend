@@ -40,9 +40,12 @@ align-items:flex-start;
 export const LogoImg = styled.img`
   max-width: 180px;
   margin-bottom: 20px;
-  @media screen and (max-width:768px){
+  @media screen and (max-width:767px){
     max-width:100px;
     align-self:center;
+  }
+  @media screen and (min-width:768px){
+    max-width:150px;
   }
 `
 
@@ -52,15 +55,21 @@ export const LoginImage=styled.img`
   min-width:310px;
   margin-left:20px;
   margin-bottom:20px;
-  @media screen and (max-width:768px){
+  @media screen and (max-width:425px){
     order:0;
-    max-width:270px;
+    max-width:250px;
+    margin:0;
+    // border:red solid 1px ;
+  }
+  @media screen and (min-width:768px){
+    order:0;
+    max-width:525px;
     margin:0;
     // border:red solid 1px ;
   }
 `
 export const ReuseDiv = styled.div`
-  display: flex;
+  display: ${props=>props.display};
   border-radius:${props=>props.bRadius};
   flex-direction:${props=>props.fD};
   justify-content: ${props=>props.jC};
@@ -72,9 +81,14 @@ export const ReuseDiv = styled.div`
   margin-top: ${props=>props.mt};
   margin-left: ${props=>props.ml};
   margin-right: ${props=>props.mr};
+  padding-bottom: ${props=>props.pb};
+  padding-top: ${props=>props.pt};
+  padding-left: ${props=>props.pl};
+  padding-right: ${props=>props.pr};
   height:${props=>props.height};
     // border: #fff solid 1px;
   @media screen and (max-width:768px){
+  display: ${props=>props.sDisplay};
     flex-direction:${props=>props.sfD};
   justify-content: ${props=>props.sjC};
   align-items: ${props=>props.saI};
@@ -85,6 +99,10 @@ export const ReuseDiv = styled.div`
   margin-top: ${props=>props.smt};
   margin-left: ${props=>props.sml};
   margin-right: ${props=>props.smr};
+  padding-bottom: ${props=>props.spb};
+  padding-top: ${props=>props.spt};
+  padding-left: ${props=>props.spl};
+  padding-right: ${props=>props.spr};
   }
 `
 export const InputDiv=styled.div`
@@ -196,8 +214,12 @@ export const ErrorMsg = styled.p`
 export const ReuseText=styled.p`
   font-size:${props=>props.fS};
   color:${props=>props.color};
+  font-weight:${props=>props.fW};
   text-decoration:${props=>props.tD};
   text-align:${props=>props.tA};
   margin:0;
   cursor:pointer;
+  &:hover{
+    color:${props=>props.hColor};
+  }
 `
