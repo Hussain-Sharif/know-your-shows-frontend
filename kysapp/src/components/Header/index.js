@@ -117,7 +117,7 @@ class Header extends Component{
                 <ReuseText tD="none" fS="20px" fW="bolder" hColor="#009b37" color={`${(isClicked[2].value)?"#009b37":"grey"}`}>Remainders</ReuseText>
                 </NavLink>
             </ReuseDiv>
-            <ReuseDiv display="none" sDisplay="flex" jC="space-between" aI="center" swidth="25%">
+            <ReuseDiv display="none" sDisplay="flex" jC="space-between" aI="center" swidth="40%">
                 <NavLink isClicked={isClicked[0].value} to="/"> 
                     <HomeIcon isClicked={isClicked[0].value}/>
                 </NavLink>
@@ -128,14 +128,14 @@ class Header extends Component{
                     <RemaindersIcon isClicked={isClicked[2].value}/>
                 </NavLink>
             </ReuseDiv>
-            <ReuseDiv display="flex" sDisplay="none" mr="20px">
+            {/* <ReuseDiv display="flex" sDisplay="none" mr="20px">
                 <LogoutBtn onClick={this.onLogout} type="button" >
                     Logout
                 </LogoutBtn>
-            </ReuseDiv>
-            <ReuseDiv display="none" sDisplay="flex" mr="20px" bg="transparent">
+            </ReuseDiv> */}
+            <ReuseDiv display="flex" sDisplay="flex" mr="20px" smr="5px" bg="transparent">
                 <LogoutBtn onClick={this.onLogout} type="button" >
-                    <LogoutIcon/>
+                    <LogoutIcon />
                 </LogoutBtn>
             </ReuseDiv>
         </NavDiv>

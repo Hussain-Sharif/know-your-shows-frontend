@@ -85,8 +85,16 @@ export const ReuseDiv = styled.div`
   padding-top: ${props=>props.pt};
   padding-left: ${props=>props.pl};
   padding-right: ${props=>props.pr};
+  padding: ${props=>props.p};
+  margin: ${props=>props.m};
   height:${props=>props.height};
-    // border: #fff solid 1px;
+    // border: #000 solid 1px;
+    border:${props=>props.border};
+    border-bottom:${props=>props.borderBottom};
+    border-top:${props=>props.borderTop};
+    border-left:${props=>props.borderLeft};
+    border-right:${props=>props.borderRight};
+    
   @media screen and (max-width:768px){
   display: ${props=>props.sDisplay};
     flex-direction:${props=>props.sfD};
@@ -103,6 +111,7 @@ export const ReuseDiv = styled.div`
   padding-top: ${props=>props.spt};
   padding-left: ${props=>props.spl};
   padding-right: ${props=>props.spr};
+  overflow:${props=>props.sOf};
   }
 `
 export const InputDiv=styled.div`
@@ -146,7 +155,7 @@ export const LoginLabel = styled.label`
 
 export const LoginInput = styled.input`
   color: #f1f5f9;
-  border: 1px solid #fff;
+  // border: 1px solid #fff;
   border-radius: 10px;
   background-color: transparent;
   outline: none;
@@ -217,9 +226,29 @@ export const ReuseText=styled.p`
   font-weight:${props=>props.fW};
   text-decoration:${props=>props.tD};
   text-align:${props=>props.tA};
+  align-self:${props=>props.aS};
   margin:0;
   cursor:pointer;
+  margin-bottom: ${props=>props.mb};
+  margin-top: ${props=>props.mt};
+  margin-left: ${props=>props.ml};
+  margin-right: ${props=>props.mr};
+  padding-bottom: ${props=>props.pb};
+  padding-top: ${props=>props.pt};
+  padding-left: ${props=>props.pl};
+  padding-right: ${props=>props.pr};
+  bg:${props=>props.bg};
   &:hover{
     color:${props=>props.hColor};
+  }
+  @media screen and (max-width:768px){
+  margin-bottom: ${props=>props.smb};
+  margin-top: ${props=>props.smt};
+  margin-left: ${props=>props.sml};
+  margin-right: ${props=>props.smr};
+  padding-bottom: ${props=>props.spb};
+  padding-top: ${props=>props.spt};
+  padding-left: ${props=>props.spl};
+  padding-right: ${props=>props.spr};
   }
 `

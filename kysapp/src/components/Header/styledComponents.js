@@ -1,12 +1,14 @@
 import styled from "styled-components";
-import {AiFillHome,AiOutlineLogout } from 'react-icons/ai'
+import {AiFillHome } from 'react-icons/ai'
+import { RiLogoutCircleRLine } from "react-icons/ri";
 import {GiSelfLove,GiRingingBell} from 'react-icons/gi'
 import {ReuseDiv} from '../Login/styledComponents'
 import {Link} from 'react-router-dom'
 
 export const NavDiv=styled(ReuseDiv)`
-    position: ${()=>(window.scrollY>100?"sticky":"static")};
+    // position: ${()=>((window.scrollY>100)?"sticky":"static")};
     top: 0;
+    // overflow:hidden;
     width: 100%
 `
 
@@ -21,6 +23,7 @@ export const KysLogo=styled.img`
     margin-left:20px;
     @media screen and (max-width:768px){
         max-width:70px;
+        margin-left:5px;
     }
 `
 
@@ -29,11 +32,11 @@ export const LogoutBtn=styled.button`
     border:#009b37 solid 3px;
     color:#009b37;
     border-radius:14px;
-    font-size:20px;
+    font-size:60px;
     cursor:pointer;
     outline:none;
-    height:40px;
-    padding:5px;
+    // height:40px;
+    // padding:10px;
     display:flex;
     flex-direction:column;
     justify-content:center;
@@ -63,7 +66,13 @@ export const RemaindersIcon=styled(GiRingingBell)`
     color:${props=>(props.isClicked?"#009b37":"#fff")};
     font-size:30px;
 `
-export const LogoutIcon=styled(AiOutlineLogout)`
+export const LogoutIcon=styled(RiLogoutCircleRLine)`
     color:#009b37;
     font-size:30px;
+    margin:10px;
+    &:hover{
+        color:#fff;
+        background-color:#009b37;
+        border:0px;
+    }
 `
