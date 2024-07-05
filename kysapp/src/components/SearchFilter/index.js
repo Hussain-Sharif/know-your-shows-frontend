@@ -26,7 +26,8 @@ const SearchFilter =(props)=>{
     console.log({isFilterOpened})
 
     return(
-        <ReuseDiv   mt="30px" width="100%" pl="10px" pr="10px" display="flex" fD="column" sfD="column" sjC="flex-start" saI="center" jC="flex-start" aI="center" >
+        <ReuseDiv mb="30px"  mt="30px" width="100%" pl="10px" pr="10px" display="flex" fD="column" sfD="column" sjC="flex-start" saI="center" jC="flex-start" aI="center" >
+            <ReuseText color="#000" as="h1" aS="flex-start" mb="20px">Search Shows</ReuseText>
             <ReuseDiv ml="20px"  bRadius="18px" bg="#382933"  width="80%" swidth="95%" display="flex" fD="column" jC="center" aI="center" sml="0" smb="10px">
                 <ReuseDiv bg="#A4B494" p="10px" bRadius="18px" border="#000 solid 2px" display="flex" fD="row" width="100%" jC="flex-start" ai="center">
                     <InputElement onChange={searchChange}
