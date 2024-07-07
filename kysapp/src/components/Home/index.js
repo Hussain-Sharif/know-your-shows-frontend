@@ -1,30 +1,31 @@
 import { Component } from "react";
+
 import Cookies from 'js-cookie'
 import Header from "../Header";
 import { HomeDiv } from "./styledComponents";
-import TopCards from "../TopCards";
-import SearchFilter from '../SearchFilter'
+// import TopCards from "../TopCards";
+// import SearchFilter from '../SearchFilter'
+import AllCards from '../AllCards'
 
 
-
-const showsFilterList = [
-    {
-      label: 'Shows STARTED 30-min BACK',
-      filterId: 'STARTEDBACK',
-    },
-    {
-      label: 'Shows STARTED IN 30-min',
-      filterId: 'STARTEDIN',
-    },
-    {
-      label: 'Shows ENDED 30-min BACK',
-      filterId: 'ENDEDBACK',
-    },
-    {
-      label: 'Shows ENDED IN 30-min',
-      filterId: 'ENDEDIN',
-    },
-  ]
+// const showsFilterList = [
+//     {
+//       label: 'Shows STARTED 30-min BACK',
+//       filterId: 'STARTEDBACK',
+//     },
+//     {
+//       label: 'Shows STARTED IN 30-min',
+//       filterId: 'STARTEDIN',
+//     },
+//     {
+//       label: 'Shows ENDED 30-min BACK',
+//       filterId: 'ENDEDBACK',
+//     },
+//     {
+//       label: 'Shows ENDED IN 30-min',
+//       filterId: 'ENDEDIN',
+//     },
+//   ]
 
 const apiStatusContainer= {
     success: 'SUCCESS',
@@ -76,10 +77,14 @@ class Home extends Component{
         const resData=await response.json()
         const formattedData=this.formatData(resData);
         console.log(formattedData);
-        this.setState({fetchedData:formattedData})
+        this.setState({fetchedData:formattedData,apiStatus:apiStatusContainer.success})
       }else{
         this.setState({apiStatus:apiStatusContainer.failure})
       }
+    }
+
+    searchOnClick=()=>{
+      this.getAllHomeApi()
     }
 
     // onTimeChange=()=>{
@@ -102,6 +107,7 @@ class Home extends Component{
         }
     }
 
+
     render(){
         const {search,activeFilterId,fetchedData,apiStatus}=this.state
         console.log({search,activeFilterId,fetchedData,apiStatus}) 
@@ -109,9 +115,9 @@ class Home extends Component{
         return(
             <HomeDiv display="flex" fD="column" jC="flex-start" aI="center" bg="#A4B494" width="100vw" height="100vh">
                 <Header/>
-                <TopCards/>
-                <SearchFilter search={search} showsFilterList={showsFilterList} onFilterChange={this.onFilterChange} onSearchInputChange={this.onSearchInputChange} activeFilterId={activeFilterId}/>
-                {/* <AllCards fetchedData={fetchedData} apiStatus={apiStatus}/> */}
+                {/* <TopCards/> */}
+                {/* <SearchFilter search={search} showsFilterList={showsFilterList} onFilterChange={this.onFilterChange} onSearchInputChange={this.onSearchInputChange} activeFilterId={activeFilterId}/> */}
+                <AllCards searchOnClick={this.searchOnClick} fetchedData={fetchedData} apiStatus={apiStatus}/>
             </HomeDiv>
         )
     }
