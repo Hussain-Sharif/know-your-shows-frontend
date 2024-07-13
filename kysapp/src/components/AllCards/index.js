@@ -1,8 +1,8 @@
-// import EachCard from "../EachCard"
+import EachCard from "../EachCard"
 import { ReuseDiv } from "../Login/styledComponents"
 import {AllCardsDiv} from './styledComponents'
 // import {AllCardsDiv,ApiFailureHead,ApiFailureImg,ApiFailurePara,ApiFailureView,ApiRetryButton} from './styledComponents'
-import EachLoaderCard from '../EachLoaderCard'
+// import EachLoaderCard from '../EachLoaderCard'
 
 // const apiStatusContainer= {
 //     success: 'SUCCESS',
@@ -14,28 +14,31 @@ import EachLoaderCard from '../EachLoaderCard'
 
 const AllCards =(props)=>{
 
-    // const {searchOnClick}=props
-    console.log(Array(8).fill(0))
-    const getLoader=()=>(
-        <AllCardsDiv as="ul">
-            {
-                (Array(8).fill(0)).map((_,i)=>(
-                    <EachLoaderCard key={i}/>
-                ))
-            }
-        </AllCardsDiv>
-    )
+    const {fetchedData}=props
 
-    // const getSuccess=()=>(
+    // const {searchOnClick}=props
+    // console.log(Array(8).fill(0))
+    // const getLoader=()=>(
     //     <AllCardsDiv as="ul">
-    //         <h1>Hello Bitch</h1>
+    //         {
+    //             (Array(2).fill(0)).map((_,i)=>(
+    //                 <EachLoaderCard key={i}/>
+    //             ))
+    //         }
     //     </AllCardsDiv>
-    //     // <AllCardsDiv as="ul">
-    //     //     {
-    //     //         fetchedData.map(eachItem=>(<EachCard key={eachItem.id} eachItem={eachItem}/>))
-    //     //     }
-    //     // </AllCardsDiv>
     // )
+
+    const getSuccess=()=>(
+        <>
+        {/* <AllCardsDiv as="ul">
+            <h1>Hello Bitch</h1>
+        </AllCardsDiv> */}
+        <AllCardsDiv as="ul">
+             {
+                 fetchedData.map(eachItem=>(<EachCard key={eachItem.id} eachItem={eachItem}/>))
+             }
+         </AllCardsDiv>
+        </>)
 
     // const getFailure=()=>(
     //     <ApiFailureView>
@@ -76,7 +79,7 @@ const AllCards =(props)=>{
 
     return (
         <ReuseDiv width="99%" display="flex" fD="column" jC="center" aI="center">
-            {getLoader()}
+            {getSuccess()}
         </ReuseDiv>
     )
 }

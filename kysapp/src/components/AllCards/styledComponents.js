@@ -6,12 +6,15 @@ export const AllCardsDiv=styled(ReuseDiv)`
     padding-left:0;
     display:flex;
     flex-direction:row;
-    justify-content:flex-start;
+    justify-content:center;
     align-items:flex-start;
+    border:red solid 2px;
     flex-wrap:wrap;
     width:99%;
     @media screen and (max-width:768px){
-        flex-direction:column;
+        flex-direction:row;
+        justify-content:center;
+    align-items:flex-start;
     }
 `
 

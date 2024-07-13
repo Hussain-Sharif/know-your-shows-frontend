@@ -237,7 +237,8 @@ export const ReuseText=styled.p`
   padding-top: ${props=>props.pt};
   padding-left: ${props=>props.pl};
   padding-right: ${props=>props.pr};
-  bg:${props=>props.bg};
+  background-color:${props=>props.bg};
+  border-radius:${props=>props.bR};
   &:hover{
     color:${props=>props.hColor};
   }

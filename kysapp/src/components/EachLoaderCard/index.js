@@ -5,18 +5,18 @@ import LoaderCard from './styledComponents'
 
 const EachLoaderCard=()=>(
     <LoaderCard>
-        <ReuseDiv display="flex" width="100%" fD="row" jC="space-between" aI="center">
-            <Skeleton width={10} baseColor="#382933" highlightColor="#A4B494"/>
-            <Skeleton width={10} baseColor="#382933" highlightColor="#A4B494"/>
+        <ReuseDiv mb="5px" display="flex" width="100%" fD="row" jC="space-between" aI="center">
+            <Skeleton width={60} height={20} baseColor="#382933" highlightColor="#A4B494"/>
+            <Skeleton width={60} height={20} baseColor="#382933" highlightColor="#A4B494"/>
         </ReuseDiv>
-        <Skeleton width={100} height={70} baseColor="#382933" highlightColor="#A4B494"/>
-        <ReuseDiv display="flex" width="100%" fD="column" jC="center" aI="flex-start">
-            <Skeleton width={100} baseColor="#382933" highlightColor="#A4B494"/>
-            <Skeleton width={100} baseColor="#382933" highlightColor="#A4B494"/>
+        <Skeleton width={250} height={100} baseColor="#382933" highlightColor="#A4B494"/>
+        <ReuseDiv mt="5px" mb="5px" display="flex" width="100%" fD="column" jC="center" aI="flex-start">
+            <Skeleton width={150} baseColor="#382933" highlightColor="#A4B494"/>
+            <Skeleton width={110} baseColor="#382933" highlightColor="#A4B494"/>
         </ReuseDiv>
-        <ReuseDiv display="flex" width="100%" fD="row" jC="space-between" aI="center">
-            <Skeleton width={10} baseColor="#382933" highlightColor="#A4B494"/>
-            <Skeleton width={10} baseColor="#382933" highlightColor="#A4B494"/>
+        <ReuseDiv mb="5px" display="flex" width="100%" fD="row" jC="space-between" aI="center">
+            <Skeleton width={60} height={20} baseColor="#382933" highlightColor="#A4B494"/>
+            <Skeleton width={60} height={20} baseColor="#382933" highlightColor="#A4B494"/>
         </ReuseDiv>
     </LoaderCard>
 )

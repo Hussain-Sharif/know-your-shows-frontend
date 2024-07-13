@@ -3,29 +3,29 @@ import { Component } from "react";
 import Cookies from 'js-cookie'
 import Header from "../Header";
 import { HomeDiv } from "./styledComponents";
-// import TopCards from "../TopCards";
-// import SearchFilter from '../SearchFilter'
+import TopCards from "../TopCards";
+import SearchFilter from '../SearchFilter'
 import AllCards from '../AllCards'
 
 
-// const showsFilterList = [
-//     {
-//       label: 'Shows STARTED 30-min BACK',
-//       filterId: 'STARTEDBACK',
-//     },
-//     {
-//       label: 'Shows STARTED IN 30-min',
-//       filterId: 'STARTEDIN',
-//     },
-//     {
-//       label: 'Shows ENDED 30-min BACK',
-//       filterId: 'ENDEDBACK',
-//     },
-//     {
-//       label: 'Shows ENDED IN 30-min',
-//       filterId: 'ENDEDIN',
-//     },
-//   ]
+const showsFilterList = [
+    {
+      label: 'Shows STARTED 30-min BACK',
+      filterId: 'STARTEDBACK',
+    },
+    {
+      label: 'Shows STARTED IN 30-min',
+      filterId: 'STARTEDIN',
+    },
+    {
+      label: 'Shows ENDED 30-min BACK',
+      filterId: 'ENDEDBACK',
+    },
+    {
+      label: 'Shows ENDED IN 30-min',
+      filterId: 'ENDEDIN',
+    },
+  ]
 
 const apiStatusContainer= {
     success: 'SUCCESS',
@@ -40,7 +40,7 @@ class Home extends Component{
     state={
         search:"",
         activeFilterId:"",
-        fetchedData:null,
+        fetchedData:[],
         apiStatus:apiStatusContainer.initial,
         offSet:0,
         limit:20
@@ -51,6 +51,7 @@ class Home extends Component{
     }
 
     componentDidMount(){
+      console.log("Component Did Mount")
       this.getAllHomeApi()
     }
 
@@ -115,8 +116,8 @@ class Home extends Component{
         return(
             <HomeDiv display="flex" fD="column" jC="flex-start" aI="center" bg="#A4B494" width="100vw" height="100vh">
                 <Header/>
-                {/* <TopCards/> */}
-                {/* <SearchFilter search={search} showsFilterList={showsFilterList} onFilterChange={this.onFilterChange} onSearchInputChange={this.onSearchInputChange} activeFilterId={activeFilterId}/> */}
+                <TopCards/>
+                <SearchFilter search={search} showsFilterList={showsFilterList} onFilterChange={this.onFilterChange} onSearchInputChange={this.onSearchInputChange} activeFilterId={activeFilterId}/>
                 <AllCards searchOnClick={this.searchOnClick} fetchedData={fetchedData} apiStatus={apiStatus}/>
             </HomeDiv>
         )
