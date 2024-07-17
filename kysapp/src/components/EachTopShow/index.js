@@ -1,24 +1,25 @@
 
-// import { ReuseDiv } from "../Login/styledComponents"
-import { EachTopItem, HiddenRadioInput,Card,Row,Icon,Description } from "./styledComponents"
+import { ReuseDiv, ReuseText } from "../Login/styledComponents"
+import { EachTopItem,Icon,CardInfo } from "./styledComponents"
 
 const EachTopShow=(props)=>{
-    const {eachTopShow}=props
-    // const {id}=eachTopShow
-    const {id,show,channel}=eachTopShow
+    const {eachItem}=props
+    // const {id}=eachItem
+    const {show,channel}=eachItem
 
     return (
         <EachTopItem>
-            <HiddenRadioInput type="radio" name="slide" id={`c${id}`} />
-            <Card htmlFor={`c${id}`}>
-                <Row>
-                    <Icon>{" "}</Icon>
-                    <Description className="description">
-                        <h4>{show}</h4>
-                        <p>{channel}</p>
-                    </Description>
-                </Row>
-            </Card>
+            <CardInfo display="flex" fD="row" width="100%" jC="flex-start" aI="center">
+                <Icon src="https://res.cloudinary.com/aymar/image/upload/v1719853798/channel_logo_aqolvj.png" alt="channels"/>
+                <ReuseDiv display="flex" fD="column" jC="flex-start" aI="flex-start">
+                    <ReuseText color="#fff" fW="bolder">
+                        {show}
+                    </ReuseText>
+                    <ReuseText color="#fff">
+                        {channel}
+                    </ReuseText>
+                </ReuseDiv>
+            </CardInfo>
         </EachTopItem>
     )
 }

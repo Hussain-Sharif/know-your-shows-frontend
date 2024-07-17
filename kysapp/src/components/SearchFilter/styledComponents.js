@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { FaSearch,FaFilter  } from "react-icons/fa";
 import { FaFilterCircleXmark } from "react-icons/fa6";
+import { GiCancel } from "react-icons/gi";
 import { ReuseDiv } from "../Login/styledComponents";
 
 export const InputElement=styled.input`
@@ -15,11 +16,14 @@ export const InputElement=styled.input`
     padding:10px;
     font-size:22px;
     color:#000;
-    border-right:#000 solid 2px;
 `
 
 export const SearchIcon=styled(FaSearch)`
     color:#009b37;
+    font-size:30px;
+`
+export const CancelIcon=styled(GiCancel)`
+    color:#382933;
     font-size:30px;
 `
 export const FilterIcon=styled(FaFilter)`
@@ -34,10 +38,12 @@ export const ClearFilterIcon=styled(FaFilterCircleXmark )`
 export const SearchButton=styled.button`
     outline:none;
     margin-left:10px;
+    padding-left:10px;
     cursor:pointer;
     text-align:center;
     background:transparent;
     border:none;
+    border-left:${props=>props.bLeft};
 `
 
 export const TagsDiv=styled(ReuseDiv)`

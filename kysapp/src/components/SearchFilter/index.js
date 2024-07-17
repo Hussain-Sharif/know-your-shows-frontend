@@ -1,40 +1,51 @@
-import { useState } from "react"
-import { HiddenRadioInput } from "../EachTopShow/styledComponents"
+// import { useState } from "react"
+// import { HiddenRadioInput } from "../EachTopShow/styledComponents"
 import { ReuseDiv, ReuseText } from "../Login/styledComponents"
-import {InputElement,SearchIcon,FilterIcon,ClearFilterIcon,SearchButton,TagsDiv,Tag,FilterDiv} from './styledComponents'
+import {InputElement,SearchIcon,CancelIcon,SearchButton,TagsDiv,Tag} from './styledComponents'
+// import {FilterIcon,ClearFilterIcon,FilterDiv} from './styledComponents'
 
 
 const SearchFilter =(props)=>{
 
-    const [isFilterOpened,setFilter]=useState(false)
+    // const [isFilterOpened,setFilter]=useState(false)
 
-    const onFilterClick=()=>{
-        setFilter((prev)=>(!prev))
-        onFilterChange("")
-    }
+    // const onFilterClick=()=>{
+    //     setFilter((prev)=>(!prev))
+    //     onFilterChange("")
+    // }
 
-    const{search,activeFilterId,onFilterChange,onSearchInputChange,showsFilterList}=props
+    // const{activeFilterId,onFilterChange,showsFilterList}=props
+    const{search,onSearchInputChange,searchOnClick,cancelOnClick}=props
     
     const searchChange=(event)=>{
         onSearchInputChange(event)
     }
 
-    const inputRadioChange=(event)=>{
-        onFilterChange(event)
+    const onCancelClick=()=>{
+        cancelOnClick()
     }
 
-    console.log({isFilterOpened})
+    const onSearchClick=()=>{
+        searchOnClick()
+    }
+
+    // const inputRadioChange=(event)=>{
+    //     onFilterChange(event)
+    // }
+
+    // console.log({isFilterOpened})
 
     return(
-        <ReuseDiv mb="30px"  mt="30px" width="100%" pl="10px" pr="10px" display="flex" fD="column" sfD="column" sjC="flex-start" saI="center" jC="flex-start" aI="center" >
+        <ReuseDiv  mb="30px"  mt="30px" width="100%" pl="10px" pr="10px" display="flex" fD="column" sfD="column" sjC="flex-start" saI="center" jC="flex-start" aI="center" >
             <ReuseText color="#000" as="h1" aS="flex-start" mb="20px">Search Shows</ReuseText>
             <ReuseDiv ml="20px"  bRadius="18px" bg="#382933"  width="80%" swidth="95%" display="flex" fD="column" jC="center" aI="center" sml="0" smb="10px">
                 <ReuseDiv bg="#A4B494" p="10px" bRadius="18px" border="#000 solid 2px" display="flex" fD="row" width="100%" jC="flex-start" ai="center">
                     <InputElement onChange={searchChange}
-                    type="search"
+                    type="text"
                     value={search}
                     placeholder="Search by...."/>
-                    <SearchButton type="button"><SearchIcon/></SearchButton>
+                    {search && <SearchButton type="button" onClick={onCancelClick}><CancelIcon/></SearchButton>}
+                    <SearchButton bLeft="#000 solid 2px" type="button" onClick={onSearchClick}><SearchIcon/></SearchButton>
                 </ReuseDiv>
                 <TagsDiv >
                     <Tag>
@@ -54,7 +65,7 @@ const SearchFilter =(props)=>{
                 </TagsDiv>
             </ReuseDiv>
 
-            <ReuseDiv width="78%" mt="10px" swidth="95%"   display="flex" fD="row" sfD="column" jC="flex-start" aI="flex-start">
+            {/* <ReuseDiv width="78%" mt="10px" swidth="95%"   display="flex" fD="row" sfD="column" jC="flex-start" aI="flex-start">
                 <ReuseDiv  display="flex" sDisplay="flex" sjC="space-between" swidth="99%" >
                     <ReuseText fS="24px" as="h1" color="#000" fW="bolder">Select Filter</ReuseText>
                     
@@ -79,7 +90,7 @@ const SearchFilter =(props)=>{
                         ))
                     }
                 </FilterDiv>
-            </ReuseDiv>
+            </ReuseDiv> */}
         </ReuseDiv>
     )
 

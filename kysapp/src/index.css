@@ -17,8 +17,21 @@ code {
   padding: 0;
 }
 
-html,body{
+body{
   width: 100vw;
   height: 100vh;
+  background-color: blue;
   overflow: hidden;
+  min-height: 0px;
+  margin: 0;
+  padding: 0;
+}
+html{
+  background-color: orange;
+  overflow: hidden;
+  width: 100vw;
+  height: 100vh;
+  min-height: 0px;
+  margin: 0;
+  padding: 0;
 }

@@ -7,7 +7,7 @@ import {Link} from 'react-router-dom'
 
 export const NavDiv=styled(ReuseDiv)`
     // position: ${()=>((window.scrollY>100)?"sticky":"static")};
-    top: 0;
+    // top: 0;
     // overflow:hidden;
     width: 100%
 `

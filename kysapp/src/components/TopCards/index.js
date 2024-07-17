@@ -1,6 +1,7 @@
 import { Component } from "react"
 import Cookies from 'js-cookie'
-import { ReuseDiv, ReuseText } from "../Login/styledComponents"
+import { ReuseText } from "../Login/styledComponents"
+import TopCardsDiv from "./styledComponents"
 import TabsContainer from "../TabsContainer"
 import SelectedLanguage from '../SelectedLanguage'
 
@@ -75,11 +76,11 @@ class TopCards extends Component{
         const {activeTabId,fetchedData}=this.state
         console.log({activeTabId,fetchedData})
         return(
-            <ReuseDiv width="90%" swidth="100%" display="flex" fD="column" jC="flex-start" aI="center">
+            <TopCardsDiv >
                 <ReuseText as="h1" aS="flex-start" sml="10px" ml="30px" mt="30px" fS="30px">Top Shows</ReuseText>
                 <TabsContainer tabsList={tabsList} activeTabId={activeTabId} changeTab={this.changeTab}/>
                 <SelectedLanguage fetchedData={fetchedData}/> 
-            </ReuseDiv>
+            </TopCardsDiv>
         )
     }
 }

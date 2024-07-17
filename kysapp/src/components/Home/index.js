@@ -6,6 +6,7 @@ import { HomeDiv } from "./styledComponents";
 import TopCards from "../TopCards";
 import SearchFilter from '../SearchFilter'
 import AllCards from '../AllCards'
+// import { ReuseDiv } from "../Login/styledComponents";
 
 
 const showsFilterList = [
@@ -88,6 +89,10 @@ class Home extends Component{
       this.getAllHomeApi()
     }
 
+    cancelOnClick=()=>{
+      this.setState({search:""},this.getAllHomeApi)
+    }
+
     // onTimeChange=()=>{
     //     const {activeFilterId}=this.state
     //     switch (activeFilterId) {
@@ -117,8 +122,8 @@ class Home extends Component{
             <HomeDiv display="flex" fD="column" jC="flex-start" aI="center" bg="#A4B494" width="100vw" height="100vh">
                 <Header/>
                 <TopCards/>
-                <SearchFilter search={search} showsFilterList={showsFilterList} onFilterChange={this.onFilterChange} onSearchInputChange={this.onSearchInputChange} activeFilterId={activeFilterId}/>
-                <AllCards searchOnClick={this.searchOnClick} fetchedData={fetchedData} apiStatus={apiStatus}/>
+                <SearchFilter search={search} cancelOnClick={this.cancelOnClick} searchOnClick={this.searchOnClick} showsFilterList={showsFilterList} onFilterChange={this.onFilterChange} onSearchInputChange={this.onSearchInputChange} activeFilterId={activeFilterId}/>
+                <AllCards cancelOnClick={this.cancelOnClick} searchOnClick={this.searchOnClick} fetchedData={fetchedData} apiStatus={apiStatus}/>
             </HomeDiv>
         )
     }
