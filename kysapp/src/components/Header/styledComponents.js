@@ -6,8 +6,9 @@ import {ReuseDiv} from '../Login/styledComponents'
 import {Link} from 'react-router-dom'
 
 export const NavDiv=styled(ReuseDiv)`
-    // position: ${()=>((window.scrollY>100)?"sticky":"static")};
-    // top: 0;
+    position: sticky;
+    top: 0;
+    z-index:1000;
     // overflow:hidden;
     width: 100%
 `

@@ -51,10 +51,12 @@ class Home extends Component{
         this.setState({search:event.target.value})
     }
 
-    componentDidMount(){
-      console.log("Component Did Mount")
-      this.getAllHomeApi()
-    }
+
+
+  componentDidMount() {
+      console.log(" HOME-PAGE Component Did Mount");
+      this.getAllHomeApi();
+  }
 
     formatData=(resData)=>(resData.map(eachItem=>({
       startOfShow:eachItem.start_of_show,

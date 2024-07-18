@@ -31,16 +31,19 @@ export const MainSliderDiv=styled(ReuseDiv)`
     max-height:70%;
     .swiper {
     width: 100%;
-    padding-top: 50px;
+    padding-top: 25px;
     padding-bottom: 50px;
   }
   
+  .swiper-button-prev,
+.swiper-button-next {
+    color: #009b37; 
+}
 
-  
-  .swiper-slide img {
-    display: block;
-    width: 100%;
-  }
+/* Customize Swiper Pagination Bullets */
+.swiper-pagination-bullet {
+    background-color: #382933;
+}
 `
 export const Slider=styled(SwiperSlide)`
     background-position: center;
