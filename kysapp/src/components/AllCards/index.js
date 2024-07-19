@@ -17,11 +17,11 @@ const AllCards =(props)=>{
     const {fetchedData,cancelOnClick}=props
 
     const {searchOnClick}=props
-    console.log(Array(8).fill(0))
+    console.log(Array(fetchedData.length).fill(0))
     const getLoader=()=>(
         <AllCardsDiv as="ul">
             {
-                (Array(2).fill(0)).map((_,i)=>(
+                (Array(fetchedData.length).fill(0)).map((_,i)=>(
                     <EachLoaderCard key={i}/>
                 ))
             }

@@ -1,134 +1,140 @@
-import { Component } from "react";
-
-import Cookies from 'js-cookie'
+import React, { useState, useEffect ,useRef } from "react";
+import Cookies from 'js-cookie';
 import Header from "../Header";
 import { HomeDiv } from "./styledComponents";
 import TopCards from "../TopCards";
-import SearchFilter from '../SearchFilter'
-import AllCards from '../AllCards'
-// import { ReuseDiv } from "../Login/styledComponents";
-
+import SearchFilter from '../SearchFilter';
+import AllCards from '../AllCards';
 
 const showsFilterList = [
-    {
-      label: 'Shows STARTED 30-min BACK',
-      filterId: 'STARTEDBACK',
-    },
-    {
-      label: 'Shows STARTED IN 30-min',
-      filterId: 'STARTEDIN',
-    },
-    {
-      label: 'Shows ENDED 30-min BACK',
-      filterId: 'ENDEDBACK',
-    },
-    {
-      label: 'Shows ENDED IN 30-min',
-      filterId: 'ENDEDIN',
-    },
-  ]
+    { label: 'Shows STARTED 30-min BACK', filterId: 'STARTEDBACK' },
+    { label: 'Shows STARTED IN 30-min', filterId: 'STARTEDIN' },
+    { label: 'Shows ENDED 30-min BACK', filterId: 'ENDEDBACK' },
+    { label: 'Shows ENDED IN 30-min', filterId: 'ENDEDIN' },
+];
 
-const apiStatusContainer= {
+const apiStatusContainer = {
     success: 'SUCCESS',
     failure: 'FAILURE',
     inProgress: 'LOADER',
     initial: 'INITIAL',
-  }
+};
 
+const Home = () => {
+    const [search, setSearch] = useState("");
+    const [activeFilterId, setActiveFilterId] = useState("");
+    const [fetchedData, setFetchedData] = useState([]);
+    const [apiStatus, setApiStatus] = useState(apiStatusContainer.initial);
+    const [offSet, setOffSet] = useState(0);
+    const [limit, setLimit] = useState(10);
 
+    const homeDivRef = useRef(null);
 
-class Home extends Component{
-    state={
-        search:"",
-        activeFilterId:"",
-        fetchedData:[],
-        apiStatus:apiStatusContainer.initial,
-        offSet:0,
-        limit:20
-    }
+    const onSearchInputChange = (event) => {
+        setSearch(event.target.value);
+    };
 
-    onSearchInputChange=(event)=>{
-        this.setState({search:event.target.value})
-    }
-
-
-
-  componentDidMount() {
-      console.log(" HOME-PAGE Component Did Mount");
-      this.getAllHomeApi();
-  }
-
-    formatData=(resData)=>(resData.map(eachItem=>({
-      startOfShow:eachItem.start_of_show,
-      endOfShow:eachItem.end_of_show,
-      channelId:eachItem.channel_id,
-      ...eachItem
-    })))
-
-    getAllHomeApi=async()=>{
-      this.setState({apiStatus:apiStatusContainer.inProgress})
-      const jwtToken=Cookies.get("jwt_token")
-      const {search,offSet,limit}=this.state
-      const apiUrl=`http://localhost:4000/all?search=${search}&limit=${limit}&offset=${offSet}`
-      const options={
-        method:"GET",
-        headers:{
-          authorization:`Bearer ${jwtToken}`
+    const handleInfiniteScroll = async() => {
+      const homeDiv = homeDivRef.current;
+        console.log(" HOME-PAGE height of the entire document in pixels: ", homeDiv.scrollHeight);
+        console.log(" HOME-PAGE height of the viewport in pixels: ", homeDiv.clientHeight);
+        console.log(" HOME-PAGE number of pixels the document has been scrolled: ", homeDiv.scrollTop);
+        try {
+          if (
+            homeDiv.clientHeight+ homeDiv.scrollTop + 1 >=
+            homeDiv.scrollHeight
+          ) {
+            console.log("HOME-PAGE Is it Reloaded BRO?")
+            setLimit(prev=>prev+10)
+          }
+        } catch (error) {
+          console.log(error);
         }
-      }
-      const response=await fetch(apiUrl,options);
-      if(response.ok===true){
-        const resData=await response.json()
-        const formattedData=this.formatData(resData);
-        console.log(formattedData);
-        this.setState({fetchedData:formattedData,apiStatus:apiStatusContainer.success})
-      }else{
-        this.setState({apiStatus:apiStatusContainer.failure})
-      }
-    }
+      };
 
-    searchOnClick=()=>{
-      this.getAllHomeApi()
-    }
+    const formatData = (resData) => resData.map(eachItem => ({
+        startOfShow: eachItem.start_of_show,
+        endOfShow: eachItem.end_of_show,
+        channelId: eachItem.channel_id,
+        ...eachItem
+    }));
 
-    cancelOnClick=()=>{
-      this.setState({search:""},this.getAllHomeApi)
-    }
-
-    // onTimeChange=()=>{
-    //     const {activeFilterId}=this.state
-    //     switch (activeFilterId) {
-    //         case showsFilterList[0].filterId===activeFilterId:
-                
-    //             break;
-        
-    //         default:
-    //             break;
-    //     }
-    // }
-
-    onFilterChange=(event)=>{
-        if(event!==""){
-          this.setState({activeFilterId:event.target.value})
-        }else{
-          this.setState({activeFilterId:event})
+    const getAllHomeApi = async (searchQuery) => {
+        setApiStatus(apiStatusContainer.inProgress);
+        const jwtToken = Cookies.get("jwt_token");
+        const apiUrl = `http://localhost:4000/all?search=${searchQuery}&limit=${limit}&offset=${offSet}`;
+        const options = {
+            method: "GET",
+            headers: {
+                authorization: `Bearer ${jwtToken}`
+            }
+        };
+        const response = await fetch(apiUrl, options);
+        if (response.ok === true) {
+            const resData = await response.json();
+            const formattedData = formatData(resData);
+            console.log(formattedData);
+            setFetchedData(formattedData);
+            setApiStatus(apiStatusContainer.success);
+        } else {
+            setApiStatus(apiStatusContainer.failure);
         }
-    }
+    };
 
+    useEffect(() => {
+        getAllHomeApi(search);
+    }, [limit]);  // Call getAllHomeApi when component mounts
 
-    render(){
-        const {search,activeFilterId,fetchedData,apiStatus}=this.state
-        console.log({search,activeFilterId,fetchedData,apiStatus}) 
+    useEffect(() => {
+      const homeDiv = homeDivRef.current;
+        console.log(" HOME-PAGE Component Did Mount");
+        window.addEventListener("scroll", handleInfiniteScroll,true);
+        return () => {
+            console.log(" HOME-PAGE Component Will UnMount");
+            window.removeEventListener("scroll", handleInfiniteScroll,true);
+        };
+    }, []);
 
-        return(
-            <HomeDiv display="flex" fD="column" jC="flex-start" aI="center" bg="#A4B494" width="100vw" height="100vh">
-                <Header/>
-                <TopCards/>
-                <SearchFilter search={search} cancelOnClick={this.cancelOnClick} searchOnClick={this.searchOnClick} showsFilterList={showsFilterList} onFilterChange={this.onFilterChange} onSearchInputChange={this.onSearchInputChange} activeFilterId={activeFilterId}/>
-                <AllCards cancelOnClick={this.cancelOnClick} searchOnClick={this.searchOnClick} fetchedData={fetchedData} apiStatus={apiStatus}/>
-            </HomeDiv>
-        )
-    }
-}
+    const searchOnClick = () => {
+        getAllHomeApi(search);
+    };
 
-export default Home
+    const cancelOnClick = () => {
+        setSearch("");
+        getAllHomeApi("");
+    };
+
+    const onFilterChange = (event) => {
+        if (event !== "") {
+            setActiveFilterId(event.target.value);
+        } else {
+            setActiveFilterId(event);
+        }
+    };
+
+    console.log({ search, activeFilterId, fetchedData, apiStatus });
+
+    return (
+        <HomeDiv ref={homeDivRef} display="flex" fD="column" jC="flex-start" aI="center" bg="#A4B494" width="100vw" height="100vh">
+            <Header />
+            <TopCards />
+            <SearchFilter
+                search={search}
+                cancelOnClick={cancelOnClick}
+                searchOnClick={searchOnClick}
+                showsFilterList={showsFilterList}
+                onFilterChange={onFilterChange}
+                onSearchInputChange={onSearchInputChange}
+                activeFilterId={activeFilterId}
+            />
+            <AllCards
+                cancelOnClick={cancelOnClick}
+                searchOnClick={searchOnClick}
+                fetchedData={fetchedData}
+                apiStatus={apiStatus}
+            />
+        </HomeDiv>
+    );
+};
+
+export default Home;
