@@ -1,7 +1,8 @@
 import styled from "styled-components";
 import {AiFillHome } from 'react-icons/ai'
 import { RiLogoutCircleRLine } from "react-icons/ri";
-import {GiSelfLove,GiRingingBell} from 'react-icons/gi'
+import {GiRingingBell} from 'react-icons/gi'
+import { FaHeart } from "react-icons/fa";
 import {ReuseDiv} from '../Login/styledComponents'
 import {Link} from 'react-router-dom'
 
@@ -59,7 +60,7 @@ export const HomeIcon=styled(AiFillHome)`
     color:${props=>(props.isClicked?"#009b37":"#fff")};
     font-size:30px;
 `
-export const LikesIcon=styled(GiSelfLove)`
+export const LikesIcon=styled(FaHeart)`
     color:${props=>(props.isClicked?"#009b37":"#fff")};
     font-size:30px;
 `

@@ -11,7 +11,7 @@ const LoaderCard=styled(ReuseDiv)`
     justify-content:center;
     align-items:center;
     align-self:center;
-    border:#009b37 solid 2px;
+    border:#382933 solid 2px;
     margin:5px;
     @media screen and (max-width:768px){
         min-width:250px;

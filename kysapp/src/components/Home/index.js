@@ -62,7 +62,8 @@ const Home = () => {
     const getAllHomeApi = async (searchQuery) => {
         setApiStatus(apiStatusContainer.inProgress);
         const jwtToken = Cookies.get("jwt_token");
-        const apiUrl = `http://localhost:4000/all?search=${searchQuery}&limit=${limit}&offset=${offSet}`;
+        const userId = Cookies.get("user_id");
+        const apiUrl = `http://localhost:8000/all?search=${searchQuery}&limit=${limit}&offset=${offSet}&userid=${userId}`;
         const options = {
             method: "GET",
             headers: {

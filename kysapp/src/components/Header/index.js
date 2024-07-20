@@ -34,7 +34,7 @@ class Header extends Component{
 
     getImageApi=async()=>{
         this.setState({apiStatus:apiStatusConstants.isProgress})
-        const apiUrl="http://localhost:4000/kyslogo/"
+        const apiUrl="http://localhost:8000/kyslogo/"
         const options={
         method:"GET"
         }
@@ -55,6 +55,7 @@ class Header extends Component{
     onLogout = () => {
     const {history} = this.props
     Cookies.remove('jwt_token')
+    Cookies.remove("user_id")
     history.replace('/login')
   }
 

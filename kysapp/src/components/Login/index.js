@@ -37,6 +37,7 @@ class Login extends Component {
   onSuccess = data => {
     const {history} = this.props
     Cookies.set('jwt_token', data.jwtToken, {expires: 100})
+    Cookies.set('user_id', data.userId, {expires: 100})
     history.replace('/')
   }
 
@@ -50,7 +51,7 @@ class Login extends Component {
 
   getLogoApi=async()=>{
     this.setState({apiStatus:apiStatusConstants.isProgress})
-    const apiUrl="http://localhost:4000/kyslogo/"
+    const apiUrl="http://localhost:8000/kyslogo/"
     const options={
       method:"GET"
     }
@@ -78,7 +79,7 @@ class Login extends Component {
     }
     const userDetails = {username, password}
     console.log({userDetails})
-    const apiUrl = 'http://localhost:4000/login/'
+    const apiUrl = 'http://localhost:8000/login/'
     const options = {
       method: 'POST',
       headers: {

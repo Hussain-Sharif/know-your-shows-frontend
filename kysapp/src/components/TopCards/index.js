@@ -48,7 +48,7 @@ class TopCards extends Component{
         const {pathName}=activeTab
         const jwtToken=Cookies.get("jwt_token")
         console.log("Top cards:",{jwtToken},{pathName})
-        const apiUrl=`http://localhost:4000${pathName}`
+        const apiUrl=`http://localhost:8000${pathName}`
         const options = {
             method: 'GET',
             headers: {

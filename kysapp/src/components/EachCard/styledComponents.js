@@ -1,5 +1,6 @@
 import styled from "styled-components";
-import { GiSelfLove ,GiRingingBell} from "react-icons/gi";
+import { GiRingingBell} from "react-icons/gi";
+import { FaHeart } from "react-icons/fa";
 
 
 export const CardImage=styled.img`
@@ -13,7 +14,7 @@ export const  CardButtons=styled.button`
     border:none;
     cursor:pointer;
 `
-export const LikeIcon=styled(GiSelfLove)`
+export const LikeIcon=styled(FaHeart)`
     font-size:30px;
     color:${props=>props.isClicked?"#009b37":"#382933"};
 `
