@@ -1,9 +1,15 @@
 import { Component } from 'react'
+import 'ldrs/ring'
+
 import Cookies from 'js-cookie'
 import {withRouter} from 'react-router-dom'
 
 import {ReuseDiv,ReuseText} from '../Login/styledComponents'
 import {NavDiv,NavLink,LogoutBtn,KysLogo,HomeIcon,LikesIcon,RemaindersIcon, LogoutIcon} from './styledComponents'
+
+import { hourglass } from 'ldrs'
+
+hourglass.register()
 
 
 const apiStatusConstants={
@@ -41,7 +47,7 @@ class Header extends Component{
         const response=await fetch(apiUrl,options)
         if(response.ok===true){
         const data=await response.json()
-        console.log({data})
+        //console.log({data})
         const formattedData={
             kysLogo:data.kys_logo,
             loginBg:data.login_bg
@@ -60,7 +66,12 @@ class Header extends Component{
   }
 
   getLoader=()=>(
-        <p>IS Loading WAIT</p>
+    <l-hourglass
+    size="40"
+    bg-opacity="0.1"
+    speed="1.75" 
+    color="black" 
+  ></l-hourglass>
     )
 
     getFailureLogoApi=()=>{
@@ -69,7 +80,7 @@ class Header extends Component{
 
     getSuccessLogoApi=()=>{
     const {kysLogo}=this.state
-    console.log({kysLogo})
+    //console.log({kysLogo})
     return (
         <KysLogo
         src={kysLogo.kysLogo} alt="Logo"/>
@@ -98,12 +109,12 @@ class Header extends Component{
             return {...eachRoute,value:0}
         })
         
-            console.log("In Header ",{isClicked}, this.props,listOfRoutes.map(eachRoute =>{
-                if(eachRoute.path === location.pathname){
-                    return {...eachRoute,value:1}
-                }
-                return {...eachRoute,value:0}
-            }))
+            // console.log("In Header ",{isClicked}, this.props,listOfRoutes.map(eachRoute =>{
+            //     if(eachRoute.path === location.pathname){
+            //         return {...eachRoute,value:1}
+            //     }
+            //     return {...eachRoute,value:0}
+            // }))
     return (
         <NavDiv aS="center" display="flex" bg="#382933" fD="row" jC="space-between" aI="center" height="80px" width="100%" >
             {this.renderLogoApi()}

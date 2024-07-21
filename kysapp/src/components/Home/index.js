@@ -25,8 +25,8 @@ const Home = () => {
     const [activeFilterId, setActiveFilterId] = useState("");
     const [fetchedData, setFetchedData] = useState([]);
     const [apiStatus, setApiStatus] = useState(apiStatusContainer.initial);
-    const [offSet, setOffSet] = useState(0);
     const [limit, setLimit] = useState(10);
+    const [previousDataLengthCheck,setPreviousDataLengthCheck]=useState(1);
 
     const homeDivRef = useRef(null);
 
@@ -36,19 +36,19 @@ const Home = () => {
 
     const handleInfiniteScroll = async() => {
       const homeDiv = homeDivRef.current;
-        console.log(" HOME-PAGE height of the entire document in pixels: ", homeDiv.scrollHeight);
-        console.log(" HOME-PAGE height of the viewport in pixels: ", homeDiv.clientHeight);
-        console.log(" HOME-PAGE number of pixels the document has been scrolled: ", homeDiv.scrollTop);
+        //console.log(" HOME-PAGE height of the entire document in pixels: ", homeDiv.scrollHeight);
+        //console.log(" HOME-PAGE height of the viewport in pixels: ", homeDiv.clientHeight);
+        //console.log(" HOME-PAGE number of pixels the document has been scrolled: ", homeDiv.scrollTop);
         try {
           if (
-            homeDiv.clientHeight+ homeDiv.scrollTop + 1 >=
-            homeDiv.scrollHeight
+            (homeDiv.clientHeight+ homeDiv.scrollTop + 1 >=
+            homeDiv.scrollHeight) && (previousDataLengthCheck===1)
           ) {
-            console.log("HOME-PAGE Is it Reloaded BRO?")
+            //console.log("HOME-PAGE Is it Reloaded BRO? <<==")
             setLimit(prev=>prev+10)
           }
         } catch (error) {
-          console.log(error);
+          //console.log(error);
         }
       };
 
@@ -63,7 +63,7 @@ const Home = () => {
         setApiStatus(apiStatusContainer.inProgress);
         const jwtToken = Cookies.get("jwt_token");
         const userId = Cookies.get("user_id");
-        const apiUrl = `http://localhost:8000/all?search=${searchQuery}&limit=${limit}&offset=${offSet}&userid=${userId}`;
+        const apiUrl = `http://localhost:8000/all?search=${searchQuery}&limit=${limit}&offset=${0}&userid=${userId}`;
         const options = {
             method: "GET",
             headers: {
@@ -74,9 +74,15 @@ const Home = () => {
         if (response.ok === true) {
             const resData = await response.json();
             const formattedData = formatData(resData);
-            console.log(formattedData);
+            if(formattedData.length===fetchedData.length){
+                setPreviousDataLengthCheck(0)
+            }else{
+                setPreviousDataLengthCheck(1)
+            }
+            //console.log(formattedData,previousDataLengthCheck,"<<==");
             setFetchedData(formattedData);
             setApiStatus(apiStatusContainer.success);
+            
         } else {
             setApiStatus(apiStatusContainer.failure);
         }
@@ -88,10 +94,10 @@ const Home = () => {
 
     useEffect(() => {
       const homeDiv = homeDivRef.current;
-        console.log(" HOME-PAGE Component Did Mount");
+        //console.log(" HOME-PAGE Component Did Mount");
         window.addEventListener("scroll", handleInfiniteScroll,true);
         return () => {
-            console.log(" HOME-PAGE Component Will UnMount");
+            //console.log(" HOME-PAGE Component Will UnMount");
             window.removeEventListener("scroll", handleInfiniteScroll,true);
         };
     }, []);
@@ -102,6 +108,7 @@ const Home = () => {
 
     const cancelOnClick = () => {
         setSearch("");
+        setLimit(10)
         getAllHomeApi("");
     };
 
@@ -113,7 +120,9 @@ const Home = () => {
         }
     };
 
-    console.log({ search, activeFilterId, fetchedData, apiStatus });
+    //console.log({ search, activeFilterId, fetchedData, apiStatus });
+
+
 
     return (
         <HomeDiv ref={homeDivRef} display="flex" fD="column" jC="flex-start" aI="center" bg="#A4B494" width="100vw" height="100vh">

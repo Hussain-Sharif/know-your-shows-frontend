@@ -1,5 +1,7 @@
 // components/ErrorBoundary.js
 import React, { Component } from 'react';
+import { ReuseDiv, ReuseText } from './Login/styledComponents';
+import LoadingPage from './LoadingPage';
 
 class ErrorBoundary extends Component {
   constructor(props) {
@@ -17,7 +19,10 @@ class ErrorBoundary extends Component {
 
   render() {
     if (this.state.hasError) {
-      return <h1>Something went wrong.</h1>;
+      return <ReuseDiv bg="#382933" display="flex" fD="column" jC="center" aI="center">
+          <ReuseText as="h1" color="#fff">Please Refresh the Page</ReuseText>
+          <LoadingPage/>
+        </ReuseDiv>;
     }
 
     return this.props.children;

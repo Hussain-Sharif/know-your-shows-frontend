@@ -58,7 +58,7 @@ class Login extends Component {
     const response=await fetch(apiUrl,options)
     if(response.ok===true){
       const data=await response.json()
-      console.log({data})
+      //console.log({data})
       const formattedData={
         kysLogo:data.kys_logo,
         loginBg:data.login_bg
@@ -78,7 +78,7 @@ class Login extends Component {
       alert("Please Enter in the Field")
     }
     const userDetails = {username, password}
-    console.log({userDetails})
+    //console.log({userDetails})
     const apiUrl = 'http://localhost:8000/login/'
     const options = {
       method: 'POST',
@@ -91,10 +91,10 @@ class Login extends Component {
     const data = await response.json()
     if (response.ok === true) {
       this.onSuccess(data)
-      console.log('login data', data)
+      //console.log('login data', data)
       this.setState({errorMsg:null})
     } else {
-      console.log('API fucked UP')
+      //console.log('API fucked UP')
       this.onFailure(data)
     }
   }
@@ -147,13 +147,13 @@ class Login extends Component {
 
   render() {
           const {username, password, errorMsg, isShownPassword,myData} = this.state
-          console.log({
-            username,
-            password,
-            errorMsg,
-            isShownPassword,
-            myData
-          })
+          //console.log({
+          //   username,
+          //   password,
+          //   errorMsg,
+          //   isShownPassword,
+          //   myData
+          // })
         if (Cookies.get('jwt_token') !== undefined) {
         return <Redirect to="/" />
         }

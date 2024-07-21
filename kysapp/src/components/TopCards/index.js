@@ -47,7 +47,7 @@ class TopCards extends Component{
         const activeTab=tabsList.filter(eachTab=>eachTab.tabId===activeTabId)[0]
         const {pathName}=activeTab
         const jwtToken=Cookies.get("jwt_token")
-        console.log("Top cards:",{jwtToken},{pathName})
+        //console.log("Top cards:",{jwtToken},{pathName})
         const apiUrl=`http://localhost:8000${pathName}`
         const options = {
             method: 'GET',
@@ -63,23 +63,23 @@ class TopCards extends Component{
             endOfShow:eachItem.end_of_show,
             ...eachItem
           }))
-          console.log("Top Language of:",pathName,formatedData)
+          //console.log("Top Language of:",pathName,formatedData)
           this.setState({fetchedData:formatedData,apiStatus:apiStatusContainer.success})
     }
 
     changeTab=(clickedTabId)=>{
-        console.log("Tab Selected ID: ",clickedTabId)
+        //console.log("Tab Selected ID: ",clickedTabId)
         this.setState({activeTabId:clickedTabId},this.getTopLanguageApi)
     }
 
     render(){
-        const {activeTabId,fetchedData}=this.state
-        console.log({activeTabId,fetchedData})
+        const {activeTabId,fetchedData,apiStatus}=this.state
+        //console.log({activeTabId,fetchedData})
         return(
             <TopCardsDiv >
                 <ReuseText as="h1" aS="flex-start" sml="10px" ml="30px" mt="30px" fS="30px">Top Shows</ReuseText>
                 <TabsContainer tabsList={tabsList} activeTabId={activeTabId} changeTab={this.changeTab}/>
-                <SelectedLanguage fetchedData={fetchedData}/> 
+                <SelectedLanguage fetchedData={fetchedData} apiStatus={apiStatus} apiStatusContainer={apiStatusContainer}/> 
             </TopCardsDiv>
         )
     }

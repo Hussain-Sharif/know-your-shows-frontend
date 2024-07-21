@@ -60,7 +60,7 @@ class Signup extends Component {
     const response=await fetch(apiUrl,options)
     if(response.ok===true){
       const data=await response.json()
-      console.log({data})
+      //console.log({data})
       const formattedData={
         kysLogo:data.kys_logo,
         loginBg:data.login_bg
@@ -84,7 +84,7 @@ class Signup extends Component {
     }
     else{
         const userDetails = {username, password,email}
-        console.log({userDetails})
+        //console.log({userDetails})
         const apiUrl = 'http://localhost:8000/signup/'
         const options = {
         method: 'POST',
@@ -97,10 +97,10 @@ class Signup extends Component {
         const data = await response.json()
         if (response.ok === true) {
         this.onSuccess()
-        console.log('Signup data', data)
+        //console.log('Signup data', data)
         this.setState({errorMsg:null})
         } else {
-        console.log('API fucked UP',data)
+        //console.log('API fucked UP',data)
         this.onFailure(data)
         }
     }
@@ -153,16 +153,16 @@ class Signup extends Component {
 
   render() {
           const {username, password,email, errorMsg, isShownPassword,myData} = this.state
-          console.log({
-            username,
-            password,
-            errorMsg,
-            email,
-            isShownPassword,
-            myData
-          })
+          //console.log({
+          //   username,
+          //   password,
+          //   errorMsg,
+          //   email,
+          //   isShownPassword,
+          //   myData
+          // })
         if (Cookies.get('jwt_token') !== undefined) {
-        return <Redirect to="/" />
+          return <Redirect to="/" />
         }
           
         return (

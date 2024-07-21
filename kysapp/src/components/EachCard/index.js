@@ -1,13 +1,25 @@
-
+import Cookies from 'js-cookie'
 import LoaderCard from '../EachLoaderCard/styledComponents'
 import { ReuseDiv, ReuseText } from '../Login/styledComponents'
 import {CardImage,CardButtons,LikeIcon,RemainderIcon} from './styledComponents'
 import {Tag} from '../SearchFilter/styledComponents'
 
 const EachCard=(props)=>{
-    const {eachItem}=props
-    const {channel,show,endOfShow,startOfShow,genre,language,isLiked}=eachItem
-    console.log("each Card",{endOfShow,startOfShow,isLiked})
+    const {eachItem,userClickedLike,userClickedRemainder}=props
+    const {id,channel,show,endOfShow,startOfShow,genre,language,isLiked,isRemainded}=eachItem
+    const userId=Cookies.get("user_id")
+    
+    const onClickLike=()=>{
+        //console.log("Is Liked in EACHCARD")
+        userClickedLike(id,userId)
+    }
+
+    const onClickRemainder=()=>{
+        //console.log("Is Remainded in EACHCARD")
+        userClickedRemainder(id,userId)
+    }
+
+    //console.log("each Card",{id,userId,endOfShow,startOfShow,isLiked,isRemainded})
     const start=new Date(startOfShow)
     const startTime=`${start.getHours()}:${start.getMinutes()}`
     const end=new Date(endOfShow)
@@ -28,8 +40,8 @@ const EachCard=(props)=>{
                 <Tag>{language}</Tag>
             </ReuseDiv>
             <ReuseDiv mb="5px" display="flex" width="95%" fD="row" jC="space-between" aI="center">
-                <CardButtons><LikeIcon isClicked={isLiked===1}/></CardButtons>
-                <CardButtons><RemainderIcon/></CardButtons>
+                <CardButtons type="button" onClick={onClickLike}><LikeIcon isClicked={isLiked===1}/></CardButtons>
+                <CardButtons type="button" onClick={onClickRemainder}><RemainderIcon isClicked={isRemainded===1}/></CardButtons>
             </ReuseDiv>
         </LoaderCard>
     )

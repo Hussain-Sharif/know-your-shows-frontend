@@ -15,10 +15,10 @@ export const  CardButtons=styled.button`
     cursor:pointer;
 `
 export const LikeIcon=styled(FaHeart)`
-    font-size:30px;
+    font-size:35px;
     color:${props=>props.isClicked?"#009b37":"#382933"};
 `
 export const RemainderIcon=styled(GiRingingBell)`
-    font-size:30px;
+    font-size:35px;
     color:${props=>props.isClicked?"#009b37":"#382933"};
 `

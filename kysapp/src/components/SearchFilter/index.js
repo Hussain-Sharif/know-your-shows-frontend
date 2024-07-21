@@ -33,7 +33,7 @@ const SearchFilter =(props)=>{
     //     onFilterChange(event)
     // }
 
-    // console.log({isFilterOpened})
+    // //console.log({isFilterOpened})
 
     return(
         <ReuseDiv  mb="30px"  mt="30px" width="100%" pl="10px" pr="10px" display="flex" fD="column" sfD="column" sjC="flex-start" saI="center" jC="flex-start" aI="center" >
