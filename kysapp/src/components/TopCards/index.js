@@ -48,7 +48,7 @@ class TopCards extends Component{
         const {pathName}=activeTab
         const jwtToken=Cookies.get("jwt_token")
         //console.log("Top cards:",{jwtToken},{pathName})
-        const apiUrl=`http://localhost:8000${pathName}`
+        const apiUrl=`https://know-your-shows-production.up.railway.app${pathName}`
         const options = {
             method: 'GET',
             headers: {

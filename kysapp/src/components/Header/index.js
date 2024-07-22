@@ -40,7 +40,7 @@ class Header extends Component{
 
     getImageApi=async()=>{
         this.setState({apiStatus:apiStatusConstants.isProgress})
-        const apiUrl="http://localhost:8000/kyslogo/"
+        const apiUrl="https://know-your-shows-production.up.railway.app/kyslogo/"
         const options={
         method:"GET"
         }

@@ -51,7 +51,7 @@ const AllCards =(props)=>{
 
   const userRemovedLike = async (showId, userId) => {
     const jwtToken = Cookies.get("jwt_token");
-    const apiUrl = `http://localhost:8000/showlikedelete?showid=${showId}&userid=${userId}`;
+    const apiUrl = `https://know-your-shows-production.up.railway.app/showlikedelete?showid=${showId}&userid=${userId}`;
     const options = {
       method: "DELETE",
       headers: {
@@ -70,7 +70,7 @@ const AllCards =(props)=>{
     //console.log("in Like API",{showid, userid})
     const data={showid,userid}
     const jwtToken = Cookies.get("jwt_token");
-    const apiUrl = `http://localhost:8000/showliked/`;
+    const apiUrl = `https://know-your-shows-production.up.railway.app/showliked/`;
     const options = {
       method: "POST",
       headers: {
@@ -90,7 +90,7 @@ const AllCards =(props)=>{
 
   const userRemovedRemainder = async (showId, userId) => {
     const jwtToken = Cookies.get("jwt_token");
-    const apiUrl = `http://localhost:8000/show_remainder_delete?showid=${showId}&userid=${userId}`;
+    const apiUrl = `https://know-your-shows-production.up.railway.app/show_remainder_delete?showid=${showId}&userid=${userId}`;
     const options = {
       method: "DELETE",
       headers: {
@@ -106,10 +106,10 @@ const AllCards =(props)=>{
   };
 
   const userMadeRemainder = async (showid, userid) => {
-    //console.log("in Like API",{showid, userid})
+    console.log("in Like API",{showid, userid})
     const data={showid,userid}
     const jwtToken = Cookies.get("jwt_token");
-    const apiUrl = `http://localhost:8000/show_remainded/`;
+    const apiUrl = `https://know-your-shows-production.up.railway.app/show_remainded/`;
     const options = {
       method: "POST",
       headers: {

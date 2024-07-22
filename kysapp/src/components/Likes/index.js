@@ -42,7 +42,7 @@ const Likes = () => {
         setApiStatus(apiStatusContainer.inProgress);
         const jwtToken = Cookies.get("jwt_token");
         const userId = Cookies.get("user_id");
-        const apiUrl = `http://localhost:8000/all_likes?search=${searchQuery}&userid=${userId}`;
+        const apiUrl = `https://know-your-shows-production.up.railway.app/all_likes?search=${searchQuery}&userid=${userId}`;
         const options = {
             method: "GET",
             headers: {

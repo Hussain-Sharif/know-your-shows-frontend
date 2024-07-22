@@ -63,7 +63,7 @@ const Home = () => {
         setApiStatus(apiStatusContainer.inProgress);
         const jwtToken = Cookies.get("jwt_token");
         const userId = Cookies.get("user_id");
-        const apiUrl = `http://localhost:8000/all?search=${searchQuery}&limit=${limit}&offset=${0}&userid=${userId}`;
+        const apiUrl = `https://know-your-shows-production.up.railway.app/all?search=${searchQuery}&limit=${limit}&offset=${0}&userid=${userId}`;
         const options = {
             method: "GET",
             headers: {

@@ -53,7 +53,7 @@ class Signup extends Component {
 
   getLogoApi=async()=>{
     this.setState({apiStatus:apiStatusConstants.isProgress})
-    const apiUrl="http://localhost:8000/kyslogo/"
+    const apiUrl="https://know-your-shows-production.up.railway.app/kyslogo/"
     const options={
       method:"GET"
     }
@@ -85,7 +85,7 @@ class Signup extends Component {
     else{
         const userDetails = {username, password,email}
         //console.log({userDetails})
-        const apiUrl = 'http://localhost:8000/signup/'
+        const apiUrl = 'https://know-your-shows-production.up.railway.app/signup/'
         const options = {
         method: 'POST',
         headers: {
