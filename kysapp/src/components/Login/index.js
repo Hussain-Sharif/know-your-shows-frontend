@@ -51,7 +51,7 @@ class Login extends Component {
 
   getLogoApi=async()=>{
     this.setState({apiStatus:apiStatusConstants.isProgress})
-    const apiUrl="https://know-your-shows-production.up.railway.app/kyslogo/"
+    const apiUrl="https://know-your-shows.onrender.com/kyslogo/"
     const options={
       method:"GET"
     }
@@ -79,7 +79,7 @@ class Login extends Component {
     }
     const userDetails = {username, password}
     //console.log({userDetails})
-    const apiUrl = 'https://know-your-shows-production.up.railway.app/login/'
+    const apiUrl = 'https://know-your-shows.onrender.com/login/'
     const options = {
       method: 'POST',
       headers: {
